@@ -33,6 +33,14 @@
     NSString *fullBackdropString = [baseString stringByAppendingString:backdropString];
     NSURL *backdropURL = [NSURL URLWithString:fullBackdropString];
     [self.backdropView setImageWithURL:backdropURL];
+    
+    //Sets title and synopsis labels.
+    self.titleLabel.text = self.movie[@"title"];
+    self.synopsisLabel.text = self.movie[@"overview"];
+    
+    //Resizes title and synopsis to fit.
+    [self.titleLabel sizeToFit];
+    [self.synopsisLabel sizeToFit];
 }
 
 /*

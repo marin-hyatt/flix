@@ -6,6 +6,7 @@
 //
 
 #import "MoviesViewController.h"
+#import "MovieCell.h"
 
 @interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -60,13 +61,17 @@
     return self.movies.count;
 }
 
-//Creates a new table view cell (like a View but with a few special properties). The text in the cell displays its row and section.
+//Creates a new table view with table view cells (like a View but with a few special properties). The text in the cell displays its row and section.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[UITableViewCell alloc] init];
+    
+    //Asks tableView to create cell with templeate MovieCell and return it
+    MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
     
     //Indexes the movie array for the right movie corresponding to the row.
     NSDictionary *movie = self.movies[indexPath.row];
-    cell.textLabel.text = movie[@"title"];
+    cell.titleLabel.text = movie[@"title"];
+    cell.synopsisLabel.text = movie[@"overview"];
+    //cell.textLabel.text = movie[@"title"];
     return cell;
 }
 

@@ -13,6 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *movies;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -25,6 +26,16 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
+    //Initial loading of movies
+    [self fetchMovies];
+    
+    //Creates and adds refresh control to the table view
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+}
+
+- (void)fetchMovies {
     //Make networking call once the view loads.
     
     //Makes request for movies that are now playing.
@@ -53,6 +64,8 @@
                //Reloads table view once network call finishes to display the results of the network call.
                [self.tableView reloadData];
            }
+        //Ends refreshing regardless of whether there was an error with the network or not.
+        [self.refreshControl endRefreshing];
        }];
     [task resume];
 }

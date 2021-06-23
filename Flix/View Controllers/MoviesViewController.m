@@ -7,8 +7,9 @@
 
 #import "MoviesViewController.h"
 
-@interface MoviesViewController ()
+@interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *movies;
 
 @end
@@ -18,6 +19,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //Assigns self as the data source and delegate for the table view in the movies view controller.
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
     
     //Make networking call once the view loads.
     
@@ -44,10 +48,28 @@
                }
                // TODO: Store the movies in a property to use elsewhere
                // TODO: Reload your table view data
+               //Reloads table view once network call finishes to display the results of the network call.
+               [self.tableView reloadData];
            }
        }];
     [task resume];
 }
+
+//Specifies that the table view has the same number of rows as number of movies retrieved.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.movies.count;
+}
+
+//Creates a new table view cell (like a View but with a few special properties). The text in the cell displays its row and section.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [[UITableViewCell alloc] init];
+    
+    //Indexes the movie array for the right movie corresponding to the row.
+    NSDictionary *movie = self.movies[indexPath.row];
+    cell.textLabel.text = movie[@"title"];
+    return cell;
+}
+
 
 /*
 #pragma mark - Navigation

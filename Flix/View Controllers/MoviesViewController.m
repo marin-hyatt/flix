@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *movies;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *networkIndicator;
 
 @end
 
@@ -37,6 +38,9 @@
 }
 
 - (void)fetchMovies {
+    //Starts animating loading indicator to show that we are waiting for network response.
+    [self.networkIndicator startAnimating];
+    
     //Make networking call once the view loads.
     
     //Makes request for movies that are now playing.
@@ -67,6 +71,8 @@
            }
         //Ends refreshing regardless of whether there was an error with the network or not.
         [self.refreshControl endRefreshing];
+        //Stops animating loading indicator.
+        [self.networkIndicator stopAnimating];
        }];
     [task resume];
 }

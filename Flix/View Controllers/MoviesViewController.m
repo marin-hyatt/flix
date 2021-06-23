@@ -8,6 +8,7 @@
 #import "MoviesViewController.h"
 #import "MovieCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "DetailsViewController.h"
 
 @interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -84,6 +85,7 @@
     //Indexes the movie array for the right movie corresponding to the row.
     NSDictionary *movie = self.movies[indexPath.row];
     
+    //Builds the URL for the movie poster.
     NSString *baseString = @"https://image.tmdb.org/t/p/w500";
     NSString *posterString = movie[@"poster_path"];
     NSString *fullString = [baseString stringByAppendingString:posterString];
@@ -100,14 +102,21 @@
 }
 
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    //Gets the movie corresponding to the tapped cell/
+    UITableViewCell *tappedCell = sender;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+    NSDictionary *movie = self.movies[indexPath.row];
+    
+    // Gets the destination view controller.
+    DetailsViewController *detailsViewController = [segue destinationViewController];
+    
+    // Pass the movie to the new view controller.
+    detailsViewController.movie = movie;
 }
-*/
 
 @end

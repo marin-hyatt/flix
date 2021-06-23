@@ -7,6 +7,7 @@
 
 #import "MoviesViewController.h"
 #import "MovieCell.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -69,9 +70,19 @@
     
     //Indexes the movie array for the right movie corresponding to the row.
     NSDictionary *movie = self.movies[indexPath.row];
+    
+    NSString *baseString = @"https://image.tmdb.org/t/p/w500";
+    NSString *posterString = movie[@"poster_path"];
+    NSString *fullString = [baseString stringByAppendingString:posterString];
+    
+    NSURL *posterURL = [NSURL URLWithString:fullString];
+    
+    //Links the cell title to movie title, cell text to movie overview, etc
     cell.titleLabel.text = movie[@"title"];
     cell.synopsisLabel.text = movie[@"overview"];
-    //cell.textLabel.text = movie[@"title"];
+    cell.posterView.image = nil;
+    [cell.posterView setImageWithURL:posterURL];
+    
     return cell;
 }
 

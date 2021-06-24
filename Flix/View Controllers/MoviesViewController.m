@@ -140,20 +140,35 @@
 
 -(void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if (searchText.length != 0) {
-            
+            // Creates a predicate used for filtering, in this case we use the title
             NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSDictionary *movie, NSDictionary *bindings) {
                 return [movie[@"title"] containsString:searchText];
             }];
+            // Filters the array of movies using the predicate
             self.filteredMovies = [self.movies filteredArrayUsingPredicate:predicate];
-            
-            NSLog(@"Filtered movies: %@", self.filteredMovies);
-            
         }
         else {
+            //If no search, don't filter anything
             self.filteredMovies = self.movies;
         }
-        
+        //Refresh the data to reflect filtering
         [self.tableView reloadData];
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    //Display cancel button when user beigns typing
+    self.searchBar.showsCancelButton = YES;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    //Takes away cancel button, deletes text, hides keyboard
+    self.searchBar.showsCancelButton = NO;
+    self.searchBar.text = @"";
+    [self.searchBar resignFirstResponder];
+    
+    //Removes filter and refreshes data
+    self.filteredMovies = self.movies;
+    [self.tableView reloadData];
 }
 
 

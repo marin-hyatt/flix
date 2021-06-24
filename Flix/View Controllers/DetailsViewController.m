@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *synopsisLabel;
 
+- (IBAction)trailerGestureRecognizer:(UITapGestureRecognizer *)sender;
+
 @end
 
 @implementation DetailsViewController
@@ -41,6 +43,13 @@
     //Resizes title and synopsis to fit.
     [self.titleLabel sizeToFit];
     [self.synopsisLabel sizeToFit];
+    
+    // Instantiate gesture recognizer with action we defined
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(trailerGestureRecognizer:)];
+    
+    // Attach it to a view of your choice. If it's a UIImageView, remember to enable user interaction
+    [self.posterView setUserInteractionEnabled:YES];
+    [self.posterView addGestureRecognizer:tapGestureRecognizer];
 }
 
 /*
@@ -53,4 +62,9 @@
 }
 */
 
+- (IBAction)trailerGestureRecognizer:(UITapGestureRecognizer *)sender {
+    NSLog(@"Tapped");
+    //Segue to trailer view
+    [self performSegueWithIdentifier:@"PresentTrailer" sender:nil];
+}
 @end

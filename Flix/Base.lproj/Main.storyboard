@@ -202,10 +202,10 @@
             </objects>
             <point key="canvasLocation" x="80" y="1627"/>
         </scene>
-        <!--View Controller-->
+        <!--Trailer View Controller-->
         <scene sceneID="73u-QO-U32">
             <objects>
-                <viewController id="thG-Zk-mcX" sceneMemberID="viewController">
+                <viewController id="thG-Zk-mcX" customClass="TrailerViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vmp-MU-Rsa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -223,6 +223,9 @@
                         <viewLayoutGuide key="safeArea" id="I3S-vM-MzY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="trailerView" destination="JMe-A9-ac3" id="Jfa-nI-fA9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C3C-jo-cLo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

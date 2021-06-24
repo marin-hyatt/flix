@@ -10,12 +10,14 @@
 #import "UIImageView+AFNetworking.h"
 #import "DetailsViewController.h"
 
-@interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *movies;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *networkIndicator;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong, nonatomic) NSArray *filteredMovies;
 
 @end
 
@@ -27,6 +29,7 @@
     //Assigns self as the data source and delegate for the table view in the movies view controller.
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.searchBar.delegate = self;
     
     //Initial loading of movies
     [self fetchMovies];
@@ -87,8 +90,9 @@
                
                // TODO: Get the array of movies
                self.movies = dataDictionary[@"results"];
+               self.filteredMovies = self.movies;
                
-               for (NSDictionary *movie in self.movies) {
+               for (NSDictionary *movie in self.filteredMovies) {
                    NSLog(@"%@", movie[@"title"]);
                }
                // TODO: Store the movies in a property to use elsewhere
@@ -106,7 +110,7 @@
 
 //Specifies that the table view has the same number of rows as number of movies retrieved.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.movies.count;
+    return self.filteredMovies.count;
 }
 
 //Creates a new table view with table view cells (like a View but with a few special properties). The text in the cell displays its row and section.
@@ -116,7 +120,7 @@
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
     
     //Indexes the movie array for the right movie corresponding to the row.
-    NSDictionary *movie = self.movies[indexPath.row];
+    NSDictionary *movie = self.filteredMovies[indexPath.row];
     
     //Builds the URL for the movie poster.
     NSString *baseString = @"https://image.tmdb.org/t/p/w500";
@@ -134,6 +138,24 @@
     return cell;
 }
 
+-(void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if (searchText.length != 0) {
+            
+            NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSDictionary *movie, NSDictionary *bindings) {
+                return [movie[@"title"] containsString:searchText];
+            }];
+            self.filteredMovies = [self.movies filteredArrayUsingPredicate:predicate];
+            
+            NSLog(@"Filtered movies: %@", self.filteredMovies);
+            
+        }
+        else {
+            self.filteredMovies = self.movies;
+        }
+        
+        [self.tableView reloadData];
+}
+
 
 
 #pragma mark - Navigation
@@ -143,7 +165,7 @@
     //Gets the movie corresponding to the tapped cell/
     UITableViewCell *tappedCell = sender;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
-    NSDictionary *movie = self.movies[indexPath.row];
+    NSDictionary *movie = self.filteredMovies[indexPath.row];
     
     // Gets the destination view controller.
     DetailsViewController *detailsViewController = [segue destinationViewController];

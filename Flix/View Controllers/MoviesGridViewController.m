@@ -8,6 +8,7 @@
 #import "MoviesGridViewController.h"
 #import "MovieCollectionCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "DetailsViewController.h"
 
 @interface MoviesGridViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -44,7 +45,7 @@
     //Make networking call once the view loads.
     
     //Makes request for movies that are now playing.
-    NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/602734/similar?api_key=6523b7e495ff548f5a8e3c5f6ed927ef&language=en-US&page=1"];
+    NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/399566/similar?api_key=6523b7e495ff548f5a8e3c5f6ed927ef&language=en-US&page=1"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     
@@ -94,15 +95,26 @@
     [task resume];
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    //Gets the movie corresponding to the tapped cell
+    UICollectionViewCell *tappedCell = sender;
+    NSIndexPath *indexPath = [self.collectionView indexPathForCell:tappedCell];
+    NSDictionary *movie = self.movies[indexPath.row];
+    
+    // Gets the destination view controller.
+    DetailsViewController *detailsViewController = [segue destinationViewController];
+    
+    // Pass the movie to the new view controller.
+    detailsViewController.movie = movie;
+    
 }
-*/
+
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     MovieCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MovieCollectionCell" forIndexPath:indexPath];

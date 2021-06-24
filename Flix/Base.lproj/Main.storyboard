@@ -114,6 +114,7 @@
                                         <size key="customSize" width="153" height="152"/>
                                         <connections>
                                             <outlet property="posterView" destination="Vs9-8D-psx" id="ajB-oP-yC4"/>
+                                            <segue destination="SOq-j1-yse" kind="show" id="eaW-em-dOj"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -151,7 +152,7 @@
                                         <rect key="frame" x="8" y="186" width="111" height="168"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="91V-cQ-BEi">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="91V-cQ-BEi">
                                         <rect key="frame" x="127" y="282" width="270" height="72"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
@@ -183,7 +184,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K2N-gW-fkZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="19" y="1566"/>
+            <point key="canvasLocation" x="610" y="1623"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="iT1-6e-CYC">
@@ -222,11 +223,11 @@
             </objects>
             <point key="canvasLocation" x="19" y="70"/>
         </scene>
-        <!--Anime Movies-->
+        <!--Monsters-->
         <scene sceneID="KAd-4B-ntT">
             <objects>
                 <navigationController id="iXW-YN-Ehk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Anime Movies" image="superhero_tabbar_item" id="iaH-MH-FJa"/>
+                    <tabBarItem key="tabBarItem" title="Monsters" image="superhero_tabbar_item" id="iaH-MH-FJa"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="TBq-UN-JtW">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -240,6 +241,9 @@
             <point key="canvasLocation" x="1259" y="70"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="eaW-em-dOj"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="now_playing_tabbar_item" width="21" height="21"/>
         <image name="superhero_tabbar_item" width="21" height="23"/>

@@ -132,8 +132,34 @@
     //Links the cell title to movie title, cell text to movie overview, etc
     cell.titleLabel.text = movie[@"title"];
     cell.synopsisLabel.text = movie[@"overview"];
-    cell.posterView.image = nil;
-    [cell.posterView setImageWithURL:posterURL];
+
+    NSURLRequest *request = [NSURLRequest requestWithURL:posterURL];
+
+    __weak MovieCell *weakCell = cell;
+    [weakCell.posterView setImageWithURLRequest:request placeholderImage:nil
+                                    success:^(NSURLRequest *imageRequest, NSHTTPURLResponse *imageResponse, UIImage *image) {
+                                        
+                                        // imageResponse will be nil if the image is cached
+                                        if (imageResponse) {
+                                            NSLog(@"Image was NOT cached, fade in image");
+                                            weakCell.posterView.alpha = 0.0;
+                                            weakCell.posterView.image = image;
+                                            
+                                            //Animate UIImageView back to alpha 1 over 0.3sec
+                                            [UIView animateWithDuration:0.3 animations:^{
+                                                weakCell.posterView.alpha = 1.0;
+                                            }];
+                                        }
+                                        else {
+                                            NSLog(@"Image was cached so just update the image");
+                                            weakCell.posterView.image = image;
+                                        }
+                                    }
+                                    failure:^(NSURLRequest *request, NSHTTPURLResponse * response, NSError *error) {
+                                        // do something for the failure condition
+                                    }];
+//    cell.posterView.image = nil;
+//    [cell.posterView setImageWithURL:posterURL];
     
     return cell;
 }

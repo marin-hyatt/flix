@@ -162,8 +162,8 @@
                                         <rect key="frame" x="8" y="186" width="111" height="168"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="91V-cQ-BEi">
-                                        <rect key="frame" x="127" y="282" width="270" height="72"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="91V-cQ-BEi">
+                                        <rect key="frame" x="127" y="282" width="279" height="72"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
                                         <nil key="textColor"/>
@@ -200,7 +200,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="80" y="1627"/>
+            <point key="canvasLocation" x="79.710144927536234" y="1626.5625"/>
         </scene>
         <!--Trailer View Controller-->
         <scene sceneID="73u-QO-U32">
@@ -234,7 +234,6 @@
         <!--Tab Bar Controller-->
         <scene sceneID="iT1-6e-CYC">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Xj0-uV-6uN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tabBarController id="W4x-oU-M9S" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4rY-MB-2EL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -246,6 +245,7 @@
                         <segue destination="iXW-YN-Ehk" kind="relationship" relationship="viewControllers" id="gKn-X5-AB6"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xj0-uV-6uN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="675" y="-884"/>
         </scene>
@@ -287,7 +287,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="eaW-em-dOj"/>
+        <segue reference="bGF-gQ-ef7"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="now_playing_tabbar_item" width="21" height="21"/>

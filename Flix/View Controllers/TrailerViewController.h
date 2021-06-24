@@ -10,6 +10,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TrailerViewController : UIViewController
+//Public property that others will set (this is why it's in header)
+@property (nonatomic, strong) NSString *movieID;
 
 @end
 

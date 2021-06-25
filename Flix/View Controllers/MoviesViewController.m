@@ -173,9 +173,6 @@
                                        // do something for the failure condition
                                        // possibly try to get the large image
                                    }];
-//    cell.posterView.image = nil;
-//    [cell.posterView setImageWithURL:posterURL];
-    
     return cell;
 }
 

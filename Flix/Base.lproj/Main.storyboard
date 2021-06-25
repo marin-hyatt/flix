@@ -194,6 +194,20 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OGX-6l-BFP">
+                                        <rect key="frame" x="262" y="274" width="144" height="80"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qc-vG-JyQ">
+                                                <rect key="frame" x="8" y="25" width="128" height="31"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                 </subviews>
                                 <viewLayoutGuide key="contentLayoutGuide" id="Gw7-UH-iwk"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="zjY-fA-lHd"/>
@@ -205,6 +219,7 @@
                     <navigationItem key="navigationItem" id="WXB-FD-2gM"/>
                     <connections>
                         <outlet property="backdropView" destination="WYG-gK-pTW" id="tGB-VQ-acC"/>
+                        <outlet property="dateLabel" destination="1qc-vG-JyQ" id="K87-aR-i6j"/>
                         <outlet property="posterView" destination="oCE-ym-J3L" id="cSz-gn-H2m"/>
                         <outlet property="ratingLabel" destination="Lq6-oZ-ghU" id="bPQ-eG-ytd"/>
                         <outlet property="synopsisLabel" destination="REi-R9-D9A" id="5e1-7p-lzR"/>

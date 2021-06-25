@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *synopsisLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 - (IBAction)trailerGestureRecognizer:(UITapGestureRecognizer *)sender;
 
@@ -120,8 +121,21 @@
     self.titleLabel.text = self.movie[@"title"];
     self.synopsisLabel.text = self.movie[@"overview"];
     
+    //Displays rating
     double rating = [self.movie[@"vote_average"] doubleValue];
     self.ratingLabel.text = [NSString stringWithFormat:@"%.1f / 10", rating];
+    
+    //Gets date string and converts it to a date object
+    NSString *dateString = self.movie[@"release_date"];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *date = [dateFormatter dateFromString:dateString];
+    
+    //Converts the date object to a string using the date formatter (set to a different format)
+    [dateFormatter setDateFormat:@"MMM d, yyyy"];
+    NSString *formattedDate = [dateFormatter stringFromDate:date];
+    NSLog(@"%@", formattedDate);
+    self.dateLabel.text = formattedDate;
     
     //Resizes title and synopsis to fit.
     //[self.titleLabel sizeToFit];

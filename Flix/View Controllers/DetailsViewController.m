@@ -68,8 +68,8 @@
                                                         }];
                                    }
                                    failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                                       // do something for the failure condition
-                                       // possibly try to get the large image
+                                       // Uses AFNetworking to get large image
+        [weakSelf.posterView setImageWithURL:posterURLLarge];
                                    }];
 
     //Builds the backdrop URL and displays it.
@@ -93,7 +93,7 @@
         
                                        [UIView animateWithDuration:0.3
                                                         animations:^{
-                                           weakSelf.backdropView.alpha = 1.0;
+                                           weakSelf.backdropView.alpha = 0.5;
                                                             
                                                         } completion:^(BOOL finished) {
                                                             // The AFNetworking ImageView Category only allows one request to be sent at a time
@@ -111,8 +111,8 @@
                                                         }];
                                    }
                                    failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                                       // do something for the failure condition
-                                       // possibly try to get the large image
+                                       // Uses AFNetworking to get large image
+        [weakSelf.backdropView setImageWithURL:backdropURLLarge];
                                    }];
     
     //Sets title and synopsis labels.
@@ -120,8 +120,10 @@
     self.synopsisLabel.text = self.movie[@"overview"];
     
     //Resizes title and synopsis to fit.
-    [self.titleLabel sizeToFit];
+    //[self.titleLabel sizeToFit];
+    [self.titleLabel setTextAlignment:NSTextAlignmentCenter];
     [self.synopsisLabel sizeToFit];
+    [self.synopsisLabel setTextAlignment:NSTextAlignmentCenter];
     
     // Instantiate gesture recognizer with action we defined
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(trailerGestureRecognizer:)];

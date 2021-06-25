@@ -135,6 +135,9 @@
     //Links the cell title to movie title, cell text to movie overview, etc
     cell.titleLabel.text = movie[@"title"];
     cell.synopsisLabel.text = movie[@"overview"];
+    
+    //Sets color of background when cell is selected
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     NSURLRequest *requestSmall = [NSURLRequest requestWithURL:posterURLSmall];
     NSURLRequest *requestLarge = [NSURLRequest requestWithURL:posterURLLarge];

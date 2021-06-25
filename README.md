@@ -23,15 +23,16 @@ The following **optional** features are implemented:
 - [x] All images fade in as they are loading.
 - [ ] User can view the large movie poster by tapping on a cell.
 - [x] For the large poster, load the low resolution image first and then switch to the high resolution image when complete.
-- [ ] Customize the selection effect of the cell.
-- [ ] Customize the navigation bar.
-- [ ] Customize the UI.
+- [x] Customize the selection effect of the cell.
+- [x] Customize the navigation bar.
+- [x] Customize the UI.
 - [ ] User can view the app on various device sizes and orientations.
 - [ ] Run your app on a real device.
 
 The following **additional** features are implemented:
 
 - [x] User can tap on a movie poster in the movie's detail screen, and they will be taken to the movie's trailer.
+- [x] Details screen displays the rating of the movie.
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 

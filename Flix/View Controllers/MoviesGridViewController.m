@@ -30,8 +30,8 @@
     //Resizes layout
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *) self.collectionView.collectionViewLayout;
     
-    layout.minimumInteritemSpacing = 2;
-    layout.minimumLineSpacing = 2;
+    layout.minimumInteritemSpacing = 0;
+    layout.minimumLineSpacing = 0;
     
     CGFloat postersPerLine = 2;
     //Accounting for the spaces in between the movie posters

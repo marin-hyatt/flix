@@ -92,7 +92,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="g1S-h9-6Sg">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="139" width="414" height="757"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="EsC-VG-ZmL">
@@ -123,6 +123,11 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <searchBar contentMode="redraw" barStyle="black" searchBarStyle="prominent" placeholder="Search for a movie here..." id="J32-18-sz2">
+                                <rect key="frame" x="0.0" y="88" width="414" height="51"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="16J-gH-Jdb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -130,6 +135,7 @@
                     <navigationItem key="navigationItem" id="6CT-Ff-BsN"/>
                     <connections>
                         <outlet property="collectionView" destination="g1S-h9-6Sg" id="hCj-Af-8Lw"/>
+                        <outlet property="searchBar" destination="J32-18-sz2" id="WVr-nU-cAb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="36g-Zr-YbW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

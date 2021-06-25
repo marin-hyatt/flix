@@ -33,6 +33,8 @@ The following **additional** features are implemented:
 
 - [x] User can tap on a movie poster in the movie's detail screen, and they will be taken to the movie's trailer.
 - [x] Details screen displays the rating of the movie.
+- [x] Details screen displays the movie's release date, formatted for easier reading.
+- [x] User can search for a movie in the collection screen as well.
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 

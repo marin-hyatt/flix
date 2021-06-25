@@ -10,10 +10,12 @@
 #import "UIImageView+AFNetworking.h"
 #import "DetailsViewController.h"
 
-@interface MoviesGridViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface MoviesGridViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate>
 
 @property (nonatomic, strong) NSArray *movies;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong, nonatomic) NSArray *filteredMovies;
 
 @end
 
@@ -24,6 +26,7 @@
     // Do any additional setup after loading the view.
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
+    self.searchBar.delegate = self;
     
     [self fetchMovies];
     
@@ -87,12 +90,46 @@
                
                // TODO: Get the array of movies
                self.movies = dataDictionary[@"results"];
+               self.filteredMovies = self.movies;
                // TODO: Store the movies in a property to use elsewhere
                // TODO: Reload your table view data
                [self.collectionView reloadData];
            }
        }];
     [task resume];
+}
+
+-(void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if (searchText.length != 0) {
+            // Creates a predicate used for filtering, in this case we use the title
+            NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSDictionary *movie, NSDictionary *bindings) {
+                return [movie[@"title"] containsString:searchText];
+            }];
+            // Filters the array of movies using the predicate
+            self.filteredMovies = [self.movies filteredArrayUsingPredicate:predicate];
+        }
+        else {
+            //If no search, don't filter anything
+            self.filteredMovies = self.movies;
+        }
+        //Refresh the data to reflect filtering
+        [self.collectionView reloadData];
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    //Display cancel button when user beigns typing
+    self.searchBar.showsCancelButton = YES;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    //Takes away cancel button, deletes text, hides keyboard
+    self.searchBar.showsCancelButton = NO;
+    self.searchBar.text = @"";
+    [self.searchBar resignFirstResponder];
+    
+    //Removes filter and refreshes data
+    self.filteredMovies = self.movies;
+    [self.collectionView reloadData];
 }
 
 
@@ -120,7 +157,7 @@
     MovieCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MovieCollectionCell" forIndexPath:indexPath];
     
     //Indexes the movie array for the right movie corresponding to the row.
-    NSDictionary *movie = self.movies[indexPath.item];
+    NSDictionary *movie = self.filteredMovies[indexPath.item];
     
     NSString *baseString = @"https://image.tmdb.org/t/p/w500";
     NSString *posterString = movie[@"poster_path"];
@@ -136,7 +173,7 @@
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.movies.count;
+    return self.filteredMovies.count;
 }
 
 

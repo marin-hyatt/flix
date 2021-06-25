@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *posterView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *synopsisLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
 
 - (IBAction)trailerGestureRecognizer:(UITapGestureRecognizer *)sender;
 
@@ -118,6 +119,9 @@
     //Sets title and synopsis labels.
     self.titleLabel.text = self.movie[@"title"];
     self.synopsisLabel.text = self.movie[@"overview"];
+    
+    double rating = [self.movie[@"vote_average"] doubleValue];
+    self.ratingLabel.text = [NSString stringWithFormat:@"%.1f / 10", rating];
     
     //Resizes title and synopsis to fit.
     //[self.titleLabel sizeToFit];
